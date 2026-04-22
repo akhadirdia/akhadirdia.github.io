@@ -1,0 +1,122 @@
+---
+import { projects } from '../data/projects';
+---
+
+<section id="projects" class="py-24 px-6">
+  <div class="max-w-6xl mx-auto">
+
+    <!-- Section header -->
+    <div class="mb-14">
+      <p class="text-indigo-400 font-mono text-sm mb-2 tracking-widest uppercase">Projects</p>
+      <h2 class="text-3xl md:text-4xl font-bold text-slate-100">What I've built</h2>
+      <p class="text-slate-500 mt-3 text-base">Open source projects — each ships a working system, not a demo.</p>
+    </div>
+
+    <!-- Featured projects (2 large cards) -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+      {projects.filter((p) => p.featured).map((p) => (
+        <div class="bg-slate-800/40 border border-slate-700/50 rounded-xl p-6 hover:border-indigo-500/40 transition-all duration-300 group flex flex-col">
+          <!-- Top row -->
+          <div class="flex items-start justify-between mb-4">
+            <span class="text-xs font-semibold px-2.5 py-1 rounded-full border bg-indigo-500/15 text-indigo-400 border-indigo-500/30">
+              Open Source ★ Featured
+            </span>
+            <div class="flex gap-3">
+              <a
+                href={p.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-slate-500 hover:text-indigo-400 transition-colors text-sm font-medium"
+              >
+                GitHub ↗
+              </a>
+              {p.demo && (
+                <a
+                  href={p.demo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-slate-500 hover:text-cyan-400 transition-colors text-sm font-medium"
+                >
+                  Demo ↗
+                </a>
+              )}
+            </div>
+          </div>
+
+          <!-- Title -->
+          <h3 class="text-base font-bold text-slate-100 font-mono mb-2 group-hover:text-indigo-300 transition-colors">
+            {p.title}
+          </h3>
+
+          <!-- Description -->
+          <p class="text-sm text-slate-400 leading-relaxed flex-1 mb-5">
+            {p.description}
+          </p>
+
+          <!-- Tags -->
+          <div class="flex flex-wrap gap-2">
+            {p.tags.map((tag) => (
+              <span class="text-xs font-mono px-2 py-0.5 rounded bg-slate-700/60 text-slate-400">
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Other projects (3-column grid) -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {projects.filter((p) => !p.featured).map((p) => (
+        <div class="bg-slate-800/40 border border-slate-700/50 rounded-xl p-5 hover:border-slate-600/70 transition-all duration-300 group flex flex-col">
+          <!-- Top row -->
+          <div class="flex items-start justify-between mb-3">
+            <span class="text-xs font-semibold px-2 py-0.5 rounded-full border bg-slate-700/50 text-slate-400 border-slate-600/40">
+              Open Source
+            </span>
+            <div class="flex gap-3">
+              <a
+                href={p.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-slate-500 hover:text-indigo-400 transition-colors text-xs font-medium"
+              >
+                GitHub ↗
+              </a>
+              {p.demo && (
+                <a
+                  href={p.demo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-slate-500 hover:text-cyan-400 transition-colors text-xs font-medium"
+                >
+                  Demo ↗
+                </a>
+              )}
+            </div>
+          </div>
+
+          <!-- Title -->
+          <h3 class="text-sm font-bold text-slate-100 font-mono mb-2 group-hover:text-indigo-300 transition-colors">
+            {p.title}
+          </h3>
+
+          <!-- Description -->
+          <p class="text-xs text-slate-400 leading-relaxed flex-1 mb-4">
+            {p.description}
+          </p>
+
+          <!-- Tags -->
+          <div class="flex flex-wrap gap-1.5">
+            {p.tags.slice(0, 4).map((tag) => (
+              <span class="text-xs font-mono px-1.5 py-0.5 rounded bg-slate-700/60 text-slate-500">
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

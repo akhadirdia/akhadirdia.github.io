@@ -1,0 +1,44 @@
+---
+import { skillGroups } from '../data/skills';
+
+const categoryAccent: Record<string, string> = {
+  'ML & AI':                    'text-indigo-400 border-indigo-500/30 bg-indigo-500/10',
+  'Languages & Frameworks':     'text-cyan-400   border-cyan-500/30   bg-cyan-500/10',
+  'Data Engineering':           'text-violet-400 border-violet-500/30 bg-violet-500/10',
+  'MLOps & DevOps':             'text-emerald-400 border-emerald-500/30 bg-emerald-500/10',
+  'Visualization & BI':         'text-amber-400  border-amber-500/30  bg-amber-500/10',
+};
+
+const badgeBase = 'text-xs font-medium px-2.5 py-1 rounded-full border';
+---
+
+<section id="skills" class="py-24 px-6 bg-slate-900/30">
+  <div class="max-w-5xl mx-auto">
+
+    <!-- Section header -->
+    <div class="mb-14">
+      <p class="text-indigo-400 font-mono text-sm mb-2 tracking-widest uppercase">Skills</p>
+      <h2 class="text-3xl md:text-4xl font-bold text-slate-100">Tech stack</h2>
+      <p class="text-slate-500 mt-3 text-base">Tools and technologies I use regularly — grouped by domain.</p>
+    </div>
+
+    <!-- Skill groups -->
+    <div class="space-y-10">
+      {skillGroups.map((group) => (
+        <div>
+          <h3 class="text-sm font-semibold text-slate-400 uppercase tracking-widest mb-4 font-mono">
+            {group.category}
+          </h3>
+          <div class="flex flex-wrap gap-2">
+            {group.skills.map((skill) => (
+              <span class={`${badgeBase} ${categoryAccent[group.category] ?? 'text-slate-400 border-slate-600 bg-slate-800/50'}`}>
+                {skill}
+              </span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

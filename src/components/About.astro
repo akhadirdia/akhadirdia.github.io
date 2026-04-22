@@ -1,0 +1,96 @@
+---
+const metrics = [
+  { value: '5+',  label: 'Years', sub: 'Data Science & ML' },
+  { value: '4',   label: 'Models', sub: 'Deployed in production (99.2% uptime)' },
+  { value: '4',   label: 'Publications', sub: 'Peer-reviewed journals' },
+];
+---
+
+<section id="about" class="py-24 px-6">
+  <div class="max-w-4xl mx-auto">
+
+    <!-- Section header -->
+    <div class="mb-12">
+      <p class="text-indigo-400 font-mono text-sm mb-2 tracking-widest uppercase">About</p>
+      <h2 class="text-3xl md:text-4xl font-bold text-slate-100">Who I am</h2>
+    </div>
+
+    <!-- Bio -->
+    <div class="mb-14 text-slate-400 text-base md:text-lg leading-relaxed space-y-4 max-w-3xl">
+      <p>
+        I'm a Senior Data Scientist with <strong class="text-slate-200">5+ years of experience</strong> in statistical
+        analysis, predictive modelling, and applied AI. I've built and shipped ML systems across
+        <strong class="text-slate-200">energy, transportation, public policy, and health</strong> — always with a focus
+        on measurable business outcomes.
+      </p>
+      <p>
+        At Bornes Québec I deploy ML models that save municipalities up to <strong class="text-slate-200">$25,000/year</strong>
+        in electricity costs, forecast EV adoption to guide infrastructure investment, and maintain
+        production pipelines processing <strong class="text-slate-200">7M+ data points monthly</strong>.
+        In parallel, I conducted AI research at CHUL & UQTR, applying deep learning to clinical imaging
+        and multi-omics data (RNA-seq, scRNA-seq, spatial transcriptomics) with peer-reviewed publication outcomes.
+      </p>
+      <p>
+        I'm equally comfortable in <strong class="text-slate-200">Python / R / SQL</strong>,
+        designing REST APIs with FastAPI, orchestrating agents with Claude API, and building
+        Streamlit dashboards that non-technical stakeholders actually use.
+      </p>
+    </div>
+
+    <!-- Metrics grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+      {metrics.map((m) => (
+        <div class="metric-card bg-slate-800/40 border border-slate-700/50 rounded-xl p-6 text-center hover:border-indigo-500/50 transition-colors duration-300">
+          <div
+            class="text-4xl md:text-5xl font-extrabold text-indigo-400 mb-1 metric-number"
+            data-target={m.value}
+          >
+            0
+          </div>
+          <div class="text-slate-200 font-semibold text-lg mb-1">{m.label}</div>
+          <div class="text-slate-500 text-sm">{m.sub}</div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<script>
+  // Animated counter on scroll using IntersectionObserver
+  function animateCounter(el: HTMLElement) {
+    const raw = el.dataset.target ?? '0';
+    const isPlus = raw.endsWith('+');
+    const target = parseInt(raw.replace('+', ''), 10);
+    const duration = 1200;
+    const start = performance.now();
+
+    function step(now: number) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      // ease-out cubic
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = Math.round(eased * target);
+      el.textContent = current + (isPlus ? '+' : '');
+      if (progress < 1) requestAnimationFrame(step);
+    }
+
+    requestAnimationFrame(step);
+  }
+
+  const cards = document.querySelectorAll<HTMLElement>('.metric-number');
+  let animated = false;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      if (entries.some((e) => e.isIntersecting) && !animated) {
+        animated = true;
+        cards.forEach(animateCounter);
+      }
+    },
+    { threshold: 0.4 }
+  );
+
+  const section = document.getElementById('about');
+  if (section) observer.observe(section);
+</script>

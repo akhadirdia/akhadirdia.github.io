@@ -1,0 +1,56 @@
+---
+import { publications } from '../data/publications';
+---
+
+<section id="publications" class="py-24 px-6">
+  <div class="max-w-4xl mx-auto">
+
+    <!-- Section header -->
+    <div class="mb-14">
+      <p class="text-indigo-400 font-mono text-sm mb-2 tracking-widest uppercase">Publications</p>
+      <h2 class="text-3xl md:text-4xl font-bold text-slate-100">Research</h2>
+      <p class="text-slate-500 mt-3 text-base">Peer-reviewed publications in ML, computational pathology, and corrosion science.</p>
+    </div>
+
+    <!-- Publication list -->
+    <div class="space-y-5">
+      {publications.map((pub, i) => (
+        <article class="bg-slate-800/40 border border-slate-700/50 rounded-xl p-6 hover:border-indigo-500/30 transition-colors duration-300 group">
+          <div class="flex items-start gap-4">
+            <!-- Index number -->
+            <span class="text-2xl font-extrabold text-slate-700 font-mono select-none shrink-0 leading-none mt-1">
+              {String(publications.length - i).padStart(2, '0')}
+            </span>
+
+            <div class="flex-1 min-w-0">
+              <!-- Title -->
+              <h3 class="text-sm md:text-base font-semibold text-slate-200 leading-snug mb-2 group-hover:text-indigo-300 transition-colors">
+                {pub.title}
+              </h3>
+
+              <!-- Authors -->
+              <p class="text-xs text-slate-500 mb-3 leading-relaxed">{pub.authors}</p>
+
+              <!-- Journal + year + DOI -->
+              <div class="flex flex-wrap items-center gap-3">
+                <span class="text-xs font-semibold px-2.5 py-1 rounded-full border bg-indigo-500/10 text-indigo-400 border-indigo-500/30">
+                  {pub.journal}
+                </span>
+                <span class="text-xs text-slate-500 font-mono">{pub.year}</span>
+                <a
+                  href={pub.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-xs text-cyan-500 hover:text-cyan-300 font-mono transition-colors"
+                >
+                  DOI: {pub.doi} ↗
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+
+  </div>
+</section>

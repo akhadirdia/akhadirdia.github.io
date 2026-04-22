@@ -1,0 +1,91 @@
+---
+import Nav from '../components/Nav.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const {
+  title = 'Abdou Khadir DIA — Senior Data Scientist',
+  description = 'Senior Data Scientist specializing in ML, Generative AI, and MLOps. I build AI systems that turn complex data into measurable business impact.',
+  ogImage = '/og-image.png',
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary SEO -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(ogImage, Astro.site)} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(ogImage, Astro.site)} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body class="bg-[#0a0f1e] text-slate-100 font-inter antialiased">
+    <Nav />
+    <main>
+      <slot />
+    </main>
+    <footer class="border-t border-slate-800 py-8 mt-20">
+      <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-slate-500">
+        <p>© {new Date().getFullYear()} Abdou Khadir DIA — All rights reserved.</p>
+        <div class="flex items-center gap-6">
+          <a
+            href="https://linkedin.com/in/abdou-khadir-dia-284012130"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hover:text-indigo-400 transition-colors"
+          >
+            LinkedIn
+          </a>
+          <a
+            href="https://github.com/akhadirdia"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hover:text-indigo-400 transition-colors"
+          >
+            GitHub
+          </a>
+          <a
+            href="mailto:abdou.kh.dia@gmail.com"
+            class="hover:text-indigo-400 transition-colors"
+          >
+            Email
+          </a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

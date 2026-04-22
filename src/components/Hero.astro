@@ -1,0 +1,112 @@
+---
+---
+
+<section id="hero" class="min-h-screen flex items-center justify-center px-6 pt-24 pb-16">
+  <div class="max-w-3xl mx-auto text-center">
+
+    <!-- Profile photo -->
+    <div class="mb-8 flex justify-center">
+      <div class="relative">
+        <div class="absolute -inset-1 rounded-full bg-gradient-to-br from-indigo-500 to-cyan-400 opacity-70 blur-sm"></div>
+        <img
+          src="/abdou-dia.png"
+          alt="Abdou Khadir DIA"
+          width="180"
+          height="180"
+          loading="eager"
+          class="relative w-[180px] h-[180px] rounded-full object-cover border-2 border-indigo-500/50"
+        />
+      </div>
+    </div>
+
+    <!-- Name -->
+    <h1 class="text-4xl md:text-6xl font-extrabold text-slate-100 tracking-tight mb-4">
+      Abdou Khadir DIA
+    </h1>
+
+    <!-- Typewriter subtitle -->
+    <div class="h-10 mb-6 flex items-center justify-center">
+      <span class="text-xl md:text-2xl font-semibold text-indigo-400 font-mono" id="typewriter"></span>
+      <span class="ml-0.5 inline-block w-0.5 h-6 bg-indigo-400 animate-pulse"></span>
+    </div>
+
+    <!-- Tagline -->
+    <p class="text-base md:text-lg text-slate-400 max-w-2xl mx-auto mb-8 leading-relaxed">
+      I build AI systems that turn complex data into measurable business impact —
+      from energy forecasting to LLM-powered agents.
+    </p>
+
+    <!-- Location badge -->
+    <div class="inline-flex items-center gap-2 text-sm text-slate-500 bg-slate-800/60 border border-slate-700/50 rounded-full px-4 py-1.5 mb-10">
+      <span>📍</span>
+      <span>Québec, Canada · Open to remote &amp; hybrid opportunities</span>
+    </div>
+
+    <!-- CTAs -->
+    <div class="flex flex-wrap items-center justify-center gap-4">
+      <a
+        href="#projects"
+        class="px-6 py-3 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-semibold transition-all duration-200 shadow-lg shadow-indigo-500/20 hover:shadow-indigo-500/40"
+      >
+        View Projects
+      </a>
+      <a
+        href="https://linkedin.com/in/abdou-khadir-dia-284012130"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="px-6 py-3 rounded-lg border border-slate-600 hover:border-indigo-500 text-slate-300 hover:text-white font-semibold transition-all duration-200 flex items-center gap-2"
+      >
+        LinkedIn ↗
+      </a>
+      <a
+        href="https://github.com/akhadirdia"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="px-6 py-3 rounded-lg border border-slate-600 hover:border-indigo-500 text-slate-300 hover:text-white font-semibold transition-all duration-200 flex items-center gap-2"
+      >
+        GitHub ↗
+      </a>
+    </div>
+
+    <!-- Scroll hint -->
+    <div class="mt-16 flex justify-center animate-bounce">
+      <svg class="w-5 h-5 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<script>
+  const roles = ['Senior Data Scientist', 'ML Engineer', 'AI Systems Builder'];
+  const el = document.getElementById('typewriter')!;
+  let roleIdx = 0;
+  let charIdx = 0;
+  let deleting = false;
+  const PAUSE_MS = 2000;
+  const TYPE_MS = 80;
+  const DELETE_MS = 40;
+
+  function tick() {
+    const current = roles[roleIdx];
+    if (!deleting) {
+      el.textContent = current.slice(0, charIdx + 1);
+      charIdx++;
+      if (charIdx === current.length) {
+        deleting = true;
+        setTimeout(tick, PAUSE_MS);
+        return;
+      }
+    } else {
+      el.textContent = current.slice(0, charIdx - 1);
+      charIdx--;
+      if (charIdx === 0) {
+        deleting = false;
+        roleIdx = (roleIdx + 1) % roles.length;
+      }
+    }
+    setTimeout(tick, deleting ? DELETE_MS : TYPE_MS);
+  }
+
+  tick();
+</script>
