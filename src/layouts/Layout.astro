@@ -10,7 +10,7 @@ interface Props {
 const {
   title = 'Abdou Khadir DIA — Senior Data Scientist',
   description = 'Senior Data Scientist specializing in ML, Generative AI, and MLOps. I build AI systems that turn complex data into measurable business impact.',
-  ogImage = '/og-image.png',
+  ogImage = '/og-image.svg',
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -40,6 +40,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={new URL(ogImage, Astro.site)} />
+
+    <!-- Preload critical image (LCP) -->
+    <link rel="preload" as="image" href="/abdou-dia.png" />
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
