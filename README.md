@@ -1,43 +1,61 @@
-# Astro Starter Kit: Minimal
+# akhadirdia.github.io
 
-```sh
-npm create astro@latest -- --template minimal
+Personal portfolio of **Abdou Khadir DIA** — Senior Data Scientist specializing in ML, Generative AI, and MLOps.
+
+Live site: [akhadirdia.github.io](https://akhadirdia.github.io)
+
+---
+
+## Stack
+
+| Layer | Technology |
+|---|---|
+| Framework | [Astro 4](https://astro.build/) — static-first, zero JS by default |
+| Styles | [Tailwind CSS 3](https://tailwindcss.com/) |
+| Icons | [@lucide/astro](https://lucide.dev/) |
+| Deployment | GitHub Pages via GitHub Actions |
+
+## Features
+
+- One-page scroll with smooth navigation
+- Typewriter hero animation (vanilla JS)
+- Animated metric counters on scroll (IntersectionObserver)
+- Experience timeline with role-type badges (Industry / Research / Policy)
+- Featured projects grid + secondary 3-column grid
+- Skill badges grouped by domain
+- Publications with DOI links
+- SEO: sitemap, robots.txt, Open Graph, Twitter Card, canonical URLs
+- Fully responsive — mobile-first
+
+## Local development
+
+```bash
+# Prerequisites: Node.js >= 18
+
+git clone https://github.com/akhadirdia/akhadirdia.github.io.git
+cd akhadirdia.github.io
+npm install
+npm run dev        # http://localhost:4321
+npm run build      # production build → dist/
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Customizing content
 
-## 🚀 Project Structure
+All content lives in typed TypeScript data files — no need to touch the components:
 
-Inside of your Astro project, you'll see the following folders and files:
+| File | Content |
+|---|---|
+| `src/data/experience.ts` | Work history, bullets, stack |
+| `src/data/projects.ts` | Projects, tags, GitHub links |
+| `src/data/publications.ts` | Papers, journals, DOIs |
+| `src/data/skills.ts` | Skill groups and badges |
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+To update personal info (name, email, links), edit `src/components/Hero.astro`, `src/components/Contact.astro`, and `src/layouts/Layout.astro`.
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Deployment
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+Pushes to `main` automatically build and deploy to GitHub Pages via `.github/workflows/deploy.yml`.
 
-Any static assets, like images, can be placed in the `public/` directory.
+---
 
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Built with [Astro](https://astro.build/) · Deployed on [GitHub Pages](https://pages.github.com/)
